@@ -1,3 +1,9 @@
+print ("--- Bilangan Ganjil ---/n")
+for i in range (0, 51):
+    if i % 2 != 0:
+        print (i, end=" ")
+print ("akhiri dari program\n")
+
 print ("--- Bilangan Genap ---/n")
 for i in range (0, 51):
     if i % 2 == 0:

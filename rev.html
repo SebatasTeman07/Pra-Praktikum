@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maison de Sucre - Boutique Bakery</title>
+    <!-- Font Playfair Display untuk sentuhan mewah & Inter untuk teks yang rapi -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- RESET & VARIABLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #c88d51;        /* Warm Gold / Amber */
+            --primary-hover: #ab733a;
+            --bg-body: #faf8f5;       /* Warm Ivory White */
+            --card-bg: #ffffff;
+            --text-main: #1c1917;     /* Dark Espresso */
+            --text-muted: #78716c;
+            --border-color: #e7e5e4;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, .brand-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+        }
+
+        .brand-logo span {
+            color: var(--primary);
+            font-style: italic;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* --- HERO BANNER --- */
+        .hero {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .hero-card {
+            background-color: #f4ede4;
+            border-radius: 24px;
+            padding: 4rem 2rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-badge {
+            background-color: #ffffff;
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            line-height: 1.2;
+            max-width: 700px;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin-bottom: 2rem;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background-color: var(--primary);
+            color: #ffffff;
+            padding: 0.9rem 2.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px rgba(200, 141, 81, 0.35);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        /* --- SECTION LAYOUT --- */
+        .section {
+            max-width: 1100px;
+            margin: 5rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-header {
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+        }
+
+        /* --- TENTANG TOKO --- */
+        .about-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            background-color: var(--card-bg);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .about-img {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            border-radius: 16px;
+        }
+
+        .about-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-content p {
+            color: var(--text-muted);
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+        }
+
+        /* --- CATALOG / PRODUK --- */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .product-thumb {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+        }
+
+        .product-body {
+            padding: 1.5rem;
+        }
+
+        .product-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+        }
+
+        .product-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            min-height: 2.7rem;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px dashed var(--border-color);
+        }
+
+        .priceTag {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--text-main);
+        }
+
+        .btn-wa {
+            background-color: #128C7E;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 0.6rem 1.1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: background-color 0.2s;
+        }
+
+        .btn-wa:hover {
+            background-color: #075e54;
+        }
+
+        /* --- LOKASI & ALAMAT --- */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .info-card {
+            background-color: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .info-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .info-item h4 {
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .info-item p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .map-box {
+            width: 100%;
+            height: 100%;
+            min-height: 300px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 2.5rem 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 6rem;
+        }
+
+        /* --- RESPONSIVE MOBILE --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .about-wrapper { grid-template-columns: 1fr; gap: 1.5rem; padding: 1.5rem; }
+            .info-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; } /* Simpel untuk tampilan seluler */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="nav-container">
+            <div class="brand-logo">Maison <span>de Sucre</span></div>
+            <ul class="nav-links">
+                <li><a href="#about">Tentang Kami</a></li>
+                <li><a href="#katalog">Katalog Kue</a></li>
+                <li><a href="#lokasi">Kontak & Lokasi</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <div class="hero-card">
+            <span class="hero-badge">Artisanal Bakery</span>
+            <h1>Kemewahan Rasa Dalam Setiap Potongan</h1>
+            <p>Dibuat secara teliti setiap pagi dengan mentega murni, cokelat artisanal, dan bahan alami tanpa pengawet.</p>
+            <a href="#katalog" class="btn-primary">Jelajahi Menu</a>
+        </div>
+    </header>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="section">
+        <div class="about-wrapper">
+            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80" alt="Dapur Bakery" class="about-img">
+            <div class="about-content">
+                <h2 class="brand-font">Tentang Maison de Sucre</h2>
+                <p>Berawal dari dapur rumahan pada tahun 2021, Maison de Sucre kini tumbuh menjadi tempat bertemunya tradisi pembuatan kue klasik Eropa dan cita rasa lokal Indonesia.</p>
+                <p>Kami meyakini bahwa kue bukan sekadar pencuci mulut, melainkan simbol perayaan, kehangatan, dan momen berharga bersama orang tercinta.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- KATALOG PRODUK -->
+    <section id="katalog" class="section">
+        <div class="section-header">
+            <h2>Katalog Pilihan</h2>
+            <p>Pilih kue favorit Anda dan pesan secara instan via WhatsApp.</p>
+        </div>
+
+        <div class="product-grid">
+
+            <!-- Item 1 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?auto=format&fit=crop&w=600&q=80" alt="Tiramisu Cake" class="product-thumb">
+                <div class="product-body">
+                    <div class="product-title brand-font">Classic Tiramisu</div>
+                    <div class="product-desc">Lapisan ladyfingers yang disiram espresso murni dan mascarpone renyah manis.</div>
+                    <div class="product-footer">
+                        <span class="priceTag">Rp 175.000</span>
+                        <a href="https://wa.me/6281234567890?text=Halo%20Maison%20de%20Sucre,%20saya%20ingin%20pesan%20Classic%20Tiramisu" target="_blank" class="btn-wa">Pesan WA</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1557925923-cd4648e211a0?auto=format&fit=crop&w=600&q=80" alt="Berry Tart" class="product-thumb">
+                <div class="product-body">
+                    <div class="product-title brand-font">Fruit & Berry Tart</div>
+                    <div class="product-desc">Kulit tart renyah diisi vanilla custard dan topping beri segar berlimpah.</div>
+                    <div class="product-footer">
+                        <span class="priceTag">Rp 140.000</span>
+                        <a href="https://wa.me/6281234567890?text=Halo%20Maison%20de%20Sucre,%20saya%20ingin%20pesan%20Fruit%20%26%20Berry%20Tart" target="_blank" class="btn-wa">Pesan WA</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=600&q=80" alt="Brownies Glaze" class="product-thumb">
+                <div class="product-body">
+                    <div class="product-title brand-font">Fudge Brownies</div>
+                    <div class="product-desc">Brownies dengan rasa cokelat intens, tekstur legit di dalam dan crispy di luar.</div>
+                    <div class="product-footer">
+                        <span class="priceTag">Rp 95.000</span>
+                        <a href="https://wa.me/6281234567890?text=Halo%20Maison%20de%20Sucre,%20saya%20ingin%20pesan%20Fudge%20Brownies" target="_blank" class="btn-wa">Pesan WA</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ALAMAT & LOKASI -->
+    <section id="lokasi" class="section">
+        <div class="section-header">
+            <h2>Kunjungi Outlet Kami</h2>
+            <p>Nikmati suasana toko kami atau pesan untuk diambil langsung (Pick-up).</p>
+        </div>
+
+        <div class="info-grid">
+            <div class="info-card">
+                <div class="info-item">
+                    <h4>Alamat Toko</h4>
+                    <p>Jl. Cendana No. 45, Kebayoran Baru, Jakarta Selatan, 12110</p>
+                </div>
+                <div class="info-item">
+                    <h4>Jam Operasional</h4>
+                    <p>Everyday: 07.00 - 21.00 WIB</p>
+                </div>
+                <div class="info-item">
+                    <h4>Kontak Informasi</h4>
+                    <p>WhatsApp: +62 812-3456-7890<br>Instagram: @maisondesucre</p>
+                </div>
+            </div>
+
+            <div class="map-box">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.280820462615!2d106.8018306147691!3d-6.226650995492652!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f14d30079f01%3A0x2e74f321f11!2sKebayoran%20Baru%2C%20South%20Jakarta%20City%2C%20Jakarta!5e0!3m2!1sen!2sid!4v1680000000000!5m2!1sen!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Maison de Sucre. Crafted with care for cake lovers.</p>
+    </footer>
+
+</body>
+</html>
